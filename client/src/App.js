@@ -1,55 +1,26 @@
-import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
-import { useDispatch } from "react-redux";
-import { getPosts } from "./actions/posts";
-import memories from "./Images/memories.png";
-import Posts from "./components/Posts/Posts";
-import Form from "./components/Form/Form";
+import { Container } from "@material-ui/core";
 
-import useStyles from "./style";
-import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home";
+import Auth from "./components/Auth/Auth";
+
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
-  const [currentId, setCurrentId] = useState(null);
-
-  const classes = useStyles();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
-
   return (
-    <Container maxWidth="lg">
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h2" align="center">
-          Memories
-        </Typography>
-        <img
-          src={memories}
-          className={classes.image}
-          height="60"
-          alt="memories"
-        />
-      </AppBar>
-      <Grow in>
-        <Container>
-          <Grid
-            container
-            className={classes.mainContainer}
-            justifyContent="space-between"
-            alignItems="stretch"
-            spacing={3}
-          >
-            <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId} />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
-            </Grid>
-          </Grid>
+    <GoogleOAuthProvider clientId="160027821140-3tv44f29thvquk4qcsfa4mqhkpls9ui2.apps.googleusercontent.com">
+      <Router>
+        <Container maxWidth="lg">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/auth" element={<Auth />} />
+          </Routes>
         </Container>
-      </Grow>
-    </Container>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 
