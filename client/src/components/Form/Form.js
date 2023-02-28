@@ -20,7 +20,6 @@ const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
-  console.log(user);
 
   useEffect(() => {
     if (post) setPostData(post);
@@ -53,7 +52,7 @@ const Form = ({ currentId, setCurrentId }) => {
     return (
       <Paper className={classes.paper}>
         <Typography variant="h6" align="center">
-          Please login to create your own memories
+          Please Sign in to create your own memories
         </Typography>
       </Paper>
     );

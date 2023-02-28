@@ -40,10 +40,8 @@ const Auth = () => {
 
     if (isSignup) {
       dispatch(signup(formData, navigate));
-      console.log("signup", isSignup);
     } else {
       dispatch(signin(formData, navigate));
-      console.log("signin", isSignup);
     }
   };
 
@@ -55,12 +53,14 @@ const Auth = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
   const switchMode = () => {
+    setFormData(initialState);
     setIsSignup((prevIsSignup) => !prevIsSignup);
+    setShowPassword(false);
   };
 
   const googleSuccess = async (res) => {
     const decode = jwt_decode(res.credential);
-    console.log(decode);
+
     // const result = res?.profileObj;
     // const token = res?.tokenId;
 
