@@ -12,7 +12,6 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getPosts());
-    console.log(currentId);
   }, [currentId, dispatch]);
 
   return (

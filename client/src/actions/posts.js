@@ -1,4 +1,10 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE } from "../constants/actionTypes";
+import {
+  FETCH_ALL,
+  CREATE,
+  UPDATE,
+  DELETE,
+  LIKE,
+} from "../constants/actionTypes";
 import * as api from "../api";
 
 //Action creators
@@ -44,11 +50,11 @@ export const deletePost = (id) => async (dispatch) => {
 
 export const likePost = (id) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem("profile"));
-  console.log("id", id);
+
   try {
     const { data } = await api.likePost(id, user?.token);
 
-    dispatch({ type: UPDATE, payload: data });
+    dispatch({ type: LIKE, payload: data });
   } catch (error) {
     console.log(error);
   }
