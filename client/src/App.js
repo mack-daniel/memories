@@ -56,25 +56,23 @@ function App() {
     //   </Router>
     // </GoogleOAuthProvider>
 
-    // <GoogleOAuthProvider clientId="160027821140-3tv44f29thvquk4qcsfa4mqhkpls9ui2.apps.googleusercontent.com">
-
-    <Router>
-      <Container maxWidth="lg">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Navigate to="/posts" replace />} />
-          <Route path="/posts" element={<Home />} />
-          <Route path="/posts/search" element={<Home />} />
-          <Route path="/posts/:id" element={<PostDetails />} />
-          <Route
-            path="/auth"
-            element={!user ? <Auth /> : <Navigate to="/posts/" replace />}
-          />
-        </Routes>
-      </Container>
-    </Router>
-
-    // </GoogleOAuthProvider>
+    <GoogleOAuthProvider clientId="160027821140-3tv44f29thvquk4qcsfa4mqhkpls9ui2.apps.googleusercontent.com">
+      <Router>
+        <Container maxWidth="lg">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Navigate to="/posts" replace />} />
+            <Route path="/posts" element={<Home />} />
+            <Route path="/posts/search" element={<Home />} />
+            <Route path="/posts/:id" element={<PostDetails />} />
+            <Route
+              path="/auth"
+              element={!user ? <Auth /> : <Navigate to="/posts/" replace />}
+            />
+          </Routes>
+        </Container>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 
