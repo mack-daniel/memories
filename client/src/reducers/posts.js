@@ -1,5 +1,6 @@
 import {
   FETCH_ALL,
+  FETCH_POST,
   FETCH_BY_SEARCH,
   CREATE,
   UPDATE,
@@ -30,6 +31,12 @@ export default (state = { isLoading: true, posts: [] }, action) => {
       return {
         ...state,
         posts: action.payload,
+      };
+    // fetch by id
+    case FETCH_POST:
+      return {
+        ...state,
+        post: action.payload,
       };
     // create post
     case CREATE:
